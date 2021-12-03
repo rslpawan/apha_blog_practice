@@ -1,0 +1,20 @@
+<style>
+    .navbar {
+        font-size: 25px;
+    }
+</style>
+
+<nav style="display: flex; justify-content: space-around;">
+    <%= link_to 'ALPHABLOG', articles_path , class: 'navbar'%>
+    <ul>
+        <% if logged_in? %>
+            <li><%= link_to 'Create Article', new_article_path %></li>
+            <li><%= link_to 'Categories', new_category_path %></li>
+            <li><%= link_to 'Profile', user_path(current_user.id) %></li>
+            <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+        <% else %>
+            <li><%= link_to 'Login', login_path %></li>
+            <li><%= link_to 'Signup', new_user_path %></li>
+        <% end %>
+    </ul>
+</nav>

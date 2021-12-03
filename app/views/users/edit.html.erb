@@ -1,0 +1,57 @@
+<h1>Edit user</h1>
+
+<% if @user.errors.any? %>
+
+    <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+            <li>
+                <%= msg %>
+            </li>
+            <% end %>
+    </ul>
+
+<% end %>
+
+<%= form_with(model: @user) do |f| %>
+    <%= f.label :username %> <br>
+    <%= f.text_field :username %> <br>
+    <%= f.label :email %> <br>
+    <%= f.text_field :email %> <br>
+    <%= f.label :password %> <br>
+    <%= f.text_field :password %> <br> <br>
+    <%= f.submit %>
+<% end %>
+
+<br> <br>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @articles.each do |article| %>
+            <tr>
+                <td>
+                    <%= article.title %>
+                </td>
+                <td>
+                    <%= article.description %>
+                </td>
+                <td>
+                    <%= link_to "Show" , article_path(article) %>
+                </td>
+                <td>
+                    <%= link_to "Edit" , edit_article_path(article) %>
+                </td>
+                <td>
+                    <%= link_to "Delete" , article_path(article), method: :delete %>
+                </td>
+            </tr>
+            <% end %>
+    </tbody>
+</table>
